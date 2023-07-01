@@ -1,15 +1,23 @@
 # device_equalizer
 
-A new Flutter plugin project.
+A Flutter plugin to open inbuilt equalizer (Currently implemented only for Android).
 
 ## Getting Started
+Add `device_equilizer` as a dependency in your pubspec.yaml file.
+```
+dependencies:
+    device_equilizer:
+      git:
+        url: https://github.com/anandnet/device_equilizer.git
+        ref: main
+```
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+Now use this package in your implemetation
 
-For help getting started with Flutter development, view the
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```dart
+import 'package:device_equalizer/device_equalizer.dart';
+
+final deviceEqualizer = DeviceEqualizer();
+deviceEquilizer.open()
+```
 
