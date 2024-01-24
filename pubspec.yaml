@@ -39,12 +39,8 @@ flutter:
         pluginClass: DeviceEqualizerPlugin
       ios:
         pluginClass: DeviceEqualizerPlugin
-      linux:
-        pluginClass: DeviceEqualizerPlugin
       macos:
         pluginClass: DeviceEqualizerPlugin
-      windows:
-        pluginClass: DeviceEqualizerPluginCApi
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
