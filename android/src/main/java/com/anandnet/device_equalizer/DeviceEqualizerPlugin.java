@@ -35,7 +35,11 @@ public class DeviceEqualizerPlugin implements FlutterPlugin, MethodCallHandler,A
   public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
     if (call.method.equals("open")) {
       openEqualizer((int)call.arguments ,result);
-    } else {
+    }else if(call.method.equals("initAudioEffect")){
+      initAudioEffect((int)call.arguments);
+    }else if(call.method.equals("endAudioEffect")){
+      endAudioEffect((int)call.arguments);
+    }else {
       result.notImplemented();
     }
   }
@@ -72,6 +76,25 @@ public class DeviceEqualizerPlugin implements FlutterPlugin, MethodCallHandler,A
       );
     }
   }
+
+  public void initAudioEffect(int sessionId){
+    sendAudioEffectIntent(sessionId, AudioEffect.ACTION_OPEN_AUDIO_EFFECT_CONTROL_SESSION);
+    System.out.println("Sent AudioEffect intent for opening");
+  }
+
+  public void endAudioEffect(int sessionId){
+    sendAudioEffectIntent(sessionId, AudioEffect.ACTION_CLOSE_AUDIO_EFFECT_CONTROL_SESSION);
+    System.out.println("Sent AudioEffect intent for closure");
+  }
+
+  private void sendAudioEffectIntent(int sessionId, String action){
+    Intent intent = new Intent(action);
+    intent.putExtra(AudioEffect.EXTRA_PACKAGE_NAME, applicationContext.getPackageName());
+    intent.putExtra(AudioEffect.EXTRA_AUDIO_SESSION, sessionId);
+    intent.putExtra(AudioEffect.EXTRA_CONTENT_TYPE, AudioEffect.CONTENT_TYPE_MUSIC);
+    applicationContext.sendBroadcast(intent);
+  }
+
   @Override
   public void onDetachedFromActivityForConfigChanges() {}
 

@@ -18,6 +18,6 @@ Now use this package in your implemetation
 import 'package:device_equalizer/device_equalizer.dart';
 
 final deviceEqualizer = DeviceEqualizer();
-deviceEquilizer.open()
+deviceEquilizer.open(sessionId)
 ```
 
